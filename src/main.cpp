@@ -1,19 +1,22 @@
 #include <Arduino.h>
-#include "HomeSpan.h" 
-
-// put function declarations here:
-int myFunction(int, int);
+#include "HomeSpan.h"
+#include "Radio.h"
 
 void setup() {
   // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+
+  homeSpan.setPairingCode("11122333");
+  homeSpan.setQRID("111-22-333");
+
+  homeSpan.begin(Category::Other, "Radio");
+
+  new SpanAccessory();
+    new Service::AccessoryInformation();
+      new Characteristic::Identify();
+    new RADIO(16); 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  homeSpan.poll();
 }
