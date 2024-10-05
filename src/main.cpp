@@ -14,7 +14,7 @@ void setup() {
   new SpanAccessory();
     new Service::AccessoryInformation();
       new Characteristic::Identify();
-    new RADIO(16); 
+    new RADIO(); 
 }
 
 void loop() {
